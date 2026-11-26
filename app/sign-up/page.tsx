@@ -21,7 +21,7 @@ export default function SignUpPage() {
                 <SignupForm />
 
                 <Link
-                    href="/sign-in"
+                    href="/"
                     className="mt-5 block text-center text-sm text-blue-700 hover:underline"
                 >
                     Back to sign in

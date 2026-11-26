@@ -21,7 +21,7 @@ export default function SignOutButton() {
                 return;
             }
 
-            window.location.replace("/sign-in");
+            window.location.replace("/");
         } catch {
             setErrorMessage("Could not sign out. Please try again.");
         } finally {

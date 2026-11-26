@@ -23,7 +23,7 @@ export async function requestBackend<T>(path: string, body?: Record<string, unkn
     if (!response.ok) {
         const error = await response.json().catch(() => null);
         if (response.status === 401 && error?.code === "SIGN_IN_REQUIRED") {
-            redirect("/sign-in");
+            redirect("/");
         }
         if (response.status === 403 && error?.code === "ADMIN_REQUIRED") {
             redirect("/dashboard");
