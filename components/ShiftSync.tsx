@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { syncWorkspace } from "../app/(workspace)/actions";
 
 export default function ShiftSync() {
-    const pathname = usePathname();
     const router = useRouter();
     const [failed, setFailed] = useState(false);
 
@@ -14,7 +13,7 @@ export default function ShiftSync() {
         let running = false;
 
         async function sync() {
-            if (running) return;
+            if (running || document.hidden) return;
             running = true;
 
             try {
@@ -41,14 +40,13 @@ export default function ShiftSync() {
             active = false;
             window.clearInterval(timer);
         };
-    }, [pathname, router]);
+    }, [router]);
 
     if (!failed) return null;
 
     return (
         <p role="alert" className="mb-4 rounded-lg bg-red-50 p-3 text-red-800">
-            Couldn’t update the shift checklist. Check the database connection
-            and refresh to retry.
+            Couldn’t update the shift checklist. Refresh to retry.
         </p>
     );
 }

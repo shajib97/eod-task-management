@@ -167,7 +167,7 @@ async function UserAccessContent({
 
                             <button
                                 type="submit"
-                                className="rounded-lg bg-[#ffcf00] px-4 py-2 text-sm font-semibold hover:bg-amber-400"
+                                className="rounded-lg bg-[#ffcf00] text-brand-ink px-4 py-2 text-sm font-semibold hover:bg-amber-400"
                             >
                                 Apply
                             </button>
@@ -388,7 +388,7 @@ async function UserAccessContent({
                             <SubmitButton
                                 label="Approve user"
                                 pendingLabel="Saving…"
-                                className="w-full rounded-lg border-amber-400 bg-[#ffcf00] text-slate-900 hover:bg-amber-400"
+                                className="w-full rounded-lg border-amber-400 bg-[#ffcf00] text-brand-ink hover:bg-amber-400"
                             />
                         </form>
                     </section>

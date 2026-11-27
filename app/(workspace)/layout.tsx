@@ -1,23 +1,27 @@
+import { cookies } from "next/headers";
 import { Suspense, type ReactNode } from "react";
 import EblLogo from "../../components/EblLogo";
 import WorkspaceNav from "../../components/WorkspaceNav";
 import ShiftSync from "../../components/ShiftSync";
 import { requireOperator } from "../../lib/permissions";
 import SignOutButton from "../../components/SignOutButton";
+import { WorkspaceThemeProvider, WorkspaceThemeToggle } from "../../components/WorkspaceTheme";
+import { workspaceThemeCookie } from "../../lib/workspace-theme";
 
 async function ProtectedWorkspace({
     children,
 }: {
     children: ReactNode;
 }) {
-    const access = await requireOperator();
+    const [access, preferences] = await Promise.all([requireOperator(), cookies()]);
+    const initialTheme = preferences.get(workspaceThemeCookie)?.value === "dark" ? "dark" : "light";
 
     return (
-        <div className="min-h-screen bg-slate-100 text-slate-900">
+        <WorkspaceThemeProvider initialTheme={initialTheme}>
             <WorkspaceNav role={access.role} />
 
             <div className="min-w-0 lg:pl-64">
-                <header className="border-b border-amber-300 bg-[#ffcf00]">
+                <header className="workspace-header border-b border-amber-300 bg-[#ffcf00]">
                     <div className="mx-auto flex max-w-screen-2xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
                         <div>
                             <p className="text-sm font-semibold">
@@ -46,6 +50,7 @@ async function ProtectedWorkspace({
                                 <EblLogo />
                             </div>
 
+                            <WorkspaceThemeToggle />
                             <SignOutButton />
                         </div>
                     </div>
@@ -54,13 +59,13 @@ async function ProtectedWorkspace({
                 <main
                     id="workspace-content"
                     tabIndex={-1}
-                    className="mx-auto max-w-screen-2xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8"
+                    className="workspace-main mx-auto max-w-screen-2xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8"
                 >
                     <ShiftSync />
                     {children}
                 </main>
             </div>
-        </div>
+        </WorkspaceThemeProvider>
     );
 }
 

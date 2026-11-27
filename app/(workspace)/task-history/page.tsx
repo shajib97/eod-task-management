@@ -21,7 +21,7 @@ async function HistoryList() {
                 shiftDate: entry.shiftDate,
                 shiftName: entry.shiftName,
                 changedAtDhaka: entry.changedAtDhaka,
-                changedByName: entry.changedByName,
+                changedByEmail: entry.changedByEmail,
             }))}
         />
     );

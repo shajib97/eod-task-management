@@ -21,7 +21,7 @@ export default function WorkspaceError({
             <button
                 type="button"
                 onClick={reset}
-                className="btn mt-5 bg-[#ffcf00] text-slate-900"
+                className="btn mt-5 bg-[#ffcf00] text-brand-ink"
             >
                 Try again
             </button>

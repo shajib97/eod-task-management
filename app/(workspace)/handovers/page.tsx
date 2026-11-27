@@ -58,7 +58,7 @@ async function HandoverContent() {
 
                 <Link
                     href="/shift-tasks"
-                    className="rounded-lg bg-[#ffcf00] px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-amber-400"
+                    className="rounded-lg bg-[#ffcf00] text-brand-ink px-4 py-2 text-sm font-semibold hover:bg-amber-400"
                 >
                     Open shift tasks
                 </Link>

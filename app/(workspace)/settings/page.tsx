@@ -114,7 +114,7 @@ async function SettingsContent({
 
                         <Link
                             href="/users"
-                            className="mt-6 inline-flex rounded-lg bg-[#ffcf00] px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-amber-400"
+                            className="mt-6 inline-flex rounded-lg bg-[#ffcf00] text-brand-ink px-4 py-2 text-sm font-semibold hover:bg-amber-400"
                         >
                             Manage user access
                         </Link>
@@ -157,7 +157,7 @@ async function SettingsContent({
 
                         <Link
                             href="/task-templates"
-                            className="mt-6 inline-flex rounded-lg bg-[#ffcf00] px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-amber-400"
+                            className="mt-6 inline-flex rounded-lg bg-[#ffcf00] text-brand-ink px-4 py-2 text-sm font-semibold hover:bg-amber-400"
                         >
                             Manage task templates
                         </Link>
@@ -206,8 +206,7 @@ async function SettingsContent({
                         </h2>
 
                         <p className="mt-2 text-sm leading-6 text-slate-600">
-                            Configure who receives shift reports sent
-                            manually by officers.
+                            Configure recipients for both manual and automatic shift reports.
                         </p>
 
                         {params.email === "saved" && (
@@ -215,7 +214,7 @@ async function SettingsContent({
                                 role="status"
                                 className="mt-4 rounded-lg bg-emerald-50 p-3 text-sm text-emerald-800"
                             >
-                                Report recipients saved.
+                                Report settings saved.
                             </p>
                         )}
 
@@ -230,7 +229,7 @@ async function SettingsContent({
                         )}
 
                         <form
-                            key={settings.recipientEmails}
+                            key={`${settings.enabled}:${settings.recipientEmails}`}
                             action={saveEmailReportSettings}
                             className="mt-5 space-y-5"
                         >
@@ -263,10 +262,25 @@ async function SettingsContent({
                                 </p>
                             </div>
 
+                            <label className="block text-sm font-semibold">
+                                Automatic reports
+                                <select
+                                    name="automaticReports"
+                                    defaultValue={settings.enabled ? "on" : "off"}
+                                    className="mt-2 block w-full rounded-lg border border-slate-300 p-2"
+                                >
+                                    <option value="off">Off</option>
+                                    <option value="on">On</option>
+                                </select>
+                                <span className="mt-2 block text-xs font-normal text-slate-500">
+                                    Automatic delivery requires the scheduled report job.
+                                </span>
+                            </label>
+
                             <SubmitButton
-                                label="Save recipients"
+                                label="Save report settings"
                                 pendingLabel="Saving…"
-                                className="rounded-lg border-amber-400 bg-[#ffcf00] text-slate-900 hover:bg-amber-400"
+                                className="rounded-lg border-amber-400 bg-[#ffcf00] text-brand-ink hover:bg-amber-400"
                             />
                         </form>
                     </section>

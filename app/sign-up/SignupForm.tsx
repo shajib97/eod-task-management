@@ -89,9 +89,8 @@ export default function SignupForm() {
                 </p>
 
                 <p className="mt-2">
-                    Email verification is required before you can access
-                    the workspace. Verification email delivery is
-                    currently pending setup.
+                    If your work email is approved, check your inbox for a
+                    verification link. Open it only if you requested this registration.
                 </p>
 
                 <p className="mt-2">
@@ -104,6 +103,7 @@ export default function SignupForm() {
 
     return (
         <form
+            method="post"
             onSubmit={handleSignup}
             aria-busy={pending}
             className="mt-6"

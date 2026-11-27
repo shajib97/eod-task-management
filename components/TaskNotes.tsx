@@ -122,7 +122,7 @@ export default function TaskNotes({
                 <button
                     type="submit"
                     disabled={pending}
-                    className="btn btn-sm bg-[#ffcf00] text-slate-900"
+                    className="btn btn-sm bg-[#ffcf00] text-brand-ink"
                 >
                     {pending ? "Saving…" : "Save"}
                 </button>

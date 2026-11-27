@@ -52,7 +52,7 @@ export default async function RecentTaskActivity() {
                                 <div className="min-w-0">
                                     <p className="text-sm text-slate-800">
                                         <span className="font-semibold">
-                                            {entry.changedByName ??
+                                            {entry.changedByEmail ??
                                                 "Officer name not recorded"}
                                         </span>{" "}
                                         {completed

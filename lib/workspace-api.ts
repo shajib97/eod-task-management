@@ -29,7 +29,7 @@ type ShiftReportTask = {
 
 type ReportDelivery = {
     deliveryStatus: "Pending" | "Sending" | "Sent" | "Failed" | "Uncertain";
-    requestedByName: string | null;
+    requestedByEmail: string | null;
     requestedAtDhaka: string | null;
     sentAtDhaka: string | null;
     recipientEmails: string;
@@ -61,7 +61,7 @@ type Handover = {
 };
 
 type RecentActivity = Pick<TaskHistoryItem,
-    "id" | "taskId" | "taskName" | "newStatus" | "changedByName" | "changedAtDhaka">;
+    "id" | "taskId" | "taskName" | "newStatus" | "changedByEmail" | "changedAtDhaka">;
 
 function shiftQuery(date: string, shift: ShiftKey["name"]) {
     return new URLSearchParams({ date, shift });

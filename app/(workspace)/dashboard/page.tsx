@@ -73,7 +73,7 @@ async function DashboardOverview() {
 
                 <Link
                     href="/shift-tasks"
-                    className="inline-flex items-center justify-center rounded-lg bg-[#ffcf00] px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-amber-400"
+                    className="inline-flex items-center justify-center rounded-lg bg-[#ffcf00] text-brand-ink px-4 py-2 text-sm font-semibold hover:bg-amber-400"
                 >
                     Open shift tasks
                 </Link>

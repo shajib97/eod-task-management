@@ -9,7 +9,7 @@ export default function SendReportButton() {
         <button
             type="submit"
             disabled={pending}
-            className="btn bg-[#ffcf00] text-slate-900 disabled:cursor-wait disabled:opacity-60"
+            className="btn bg-[#ffcf00] text-brand-ink disabled:cursor-wait disabled:opacity-60"
         >
             {pending ? "Sending report…" : "Send report by email"}
         </button>

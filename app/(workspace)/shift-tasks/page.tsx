@@ -8,8 +8,9 @@ import {
     generateShiftChecklist,
 } from "./actions";
 
-async function ShiftChecklist() {
+async function ShiftChecklist({ searchParams }: Pick<PageProps<"/shift-tasks">, "searchParams">) {
     await connection();
+    const invalidTask = (await searchParams).task === "invalid";
 
     const shift = await getCurrentShiftKey();
     const tasks = await getShiftTasks(shift.date, shift.name);
@@ -50,7 +51,7 @@ async function ShiftChecklist() {
                             <SubmitButton
                                 label="Generate checklist"
                                 pendingLabel="Generating…"
-                                className="rounded-lg border-amber-400 bg-[#ffcf00] text-slate-900 hover:bg-amber-400"
+                                className="rounded-lg border-amber-400 bg-[#ffcf00] text-brand-ink hover:bg-amber-400"
                             />
                         </form>
                     </div>
@@ -101,11 +102,16 @@ async function ShiftChecklist() {
                 </div>
 
                 <div className="border-t border-slate-100 bg-amber-50/50 p-4 sm:p-5">
-                    <details>
+                    <details open={invalidTask || undefined}>
                         <summary className="cursor-pointer text-sm font-semibold text-slate-800">
                             Add custom task
                         </summary>
 
+                        {invalidTask && (
+                            <p role="alert" className="mt-2 text-sm text-red-800">
+                                Task name must contain 1?120 characters.
+                            </p>
+                        )}
                         <form
                             action={addTask}
                             className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-end"
@@ -128,7 +134,7 @@ async function ShiftChecklist() {
                             <SubmitButton
                                 label="Add task"
                                 pendingLabel="Saving…"
-                                className="rounded-lg border-amber-400 bg-[#ffcf00] text-slate-900 hover:bg-amber-400"
+                                className="rounded-lg border-amber-400 bg-[#ffcf00] text-brand-ink hover:bg-amber-400"
                             />
                         </form>
                     </details>
@@ -150,7 +156,7 @@ async function ShiftChecklist() {
     );
 }
 
-export default function ShiftTasksPage() {
+export default function ShiftTasksPage({ searchParams }: PageProps<"/shift-tasks">) {
     return (
         <div className="space-y-6 pb-8">
             <header>
@@ -174,7 +180,7 @@ export default function ShiftTasksPage() {
                     </div>
                 }
             >
-                <ShiftChecklist />
+                <ShiftChecklist searchParams={searchParams} />
             </Suspense>
         </div>
     );

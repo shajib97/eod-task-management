@@ -11,7 +11,7 @@ export interface TaskHistoryItem {
     shiftDate: string;
     shiftName: string;
     changedAtDhaka: string | null;
-    changedByName: string | null;
+    changedByEmail: string | null;
 }
 
 export default function TaskHistoryTable({
@@ -29,7 +29,7 @@ export default function TaskHistoryTable({
 
         const matchesSearch =
             entry.taskName.toLowerCase().includes(query) ||
-            (entry.changedByName ?? "").toLowerCase().includes(query) ||
+            (entry.changedByEmail ?? "").toLowerCase().includes(query) ||
             String(entry.taskId).includes(query);
 
         const matchesShift =
@@ -185,7 +185,7 @@ export default function TaskHistoryTable({
                                         </td>
 
                                         <td className="min-w-36 align-top">
-                                            {entry.changedByName ??
+                                            {entry.changedByEmail ??
                                                 "Not recorded"}
                                         </td>
 
@@ -219,7 +219,7 @@ export default function TaskHistoryTable({
                                             (count) => count + 10,
                                         )
                                     }
-                                    className="rounded-lg bg-[#ffcf00] px-4 py-2 text-sm font-semibold hover:bg-amber-400"
+                                    className="rounded-lg bg-[#ffcf00] text-brand-ink px-4 py-2 text-sm font-semibold hover:bg-amber-400"
                                 >
                                     Show 10 more
                                 </button>

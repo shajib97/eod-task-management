@@ -1,3 +1,4 @@
+import { isIP } from "node:net";
 import { backendUrl } from "../../../../lib/backend";
 
 async function proxyAuth(request: Request) {
@@ -11,6 +12,19 @@ async function proxyAuth(request: Request) {
         if (value) forwarded.set(name, value);
     }
 
+    const secret = process.env.AUTH_PROXY_SECRET;
+    if (secret) {
+        const header = process.env.AUTH_CLIENT_IP_HEADER;
+        const clientIp = header && request.headers.get(header);
+        if (!clientIp || !isIP(clientIp)) {
+            return Response.json({ message: "Trusted client address is unavailable." }, {
+                status: 503, headers: { "cache-control": "no-store" },
+            });
+        }
+        forwarded.set("x-eod-client-ip", clientIp);
+        forwarded.set("x-eod-auth-proxy-secret", secret);
+    }
+
     const response = await fetch(backendUrl(pathname + search), {
         method: request.method,
         headers: forwarded,
@@ -20,7 +34,7 @@ async function proxyAuth(request: Request) {
     });
 
     const outgoing = new Headers({ "cache-control": "no-store" });
-    for (const name of ["content-type", "location", "retry-after"]) {
+    for (const name of ["content-type", "location", "retry-after", "x-retry-after"]) {
         const value = response.headers.get(name);
         if (value) outgoing.set(name, value);
     }

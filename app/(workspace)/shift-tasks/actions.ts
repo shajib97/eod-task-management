@@ -1,12 +1,15 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { mutate } from "../../../lib/backend";
 
 export async function addTask(formData: FormData) {
-    await mutate<void>("/tasks", formData);
+    const result = await mutate<{ status: "invalid" } | undefined>("/tasks", formData);
+    if (result?.status === "invalid") redirect("/shift-tasks?task=invalid");
     revalidatePath("/shift-tasks");
     revalidatePath("/dashboard");
+    redirect("/shift-tasks");
 }
 
 export async function updateTaskStatus(formData: FormData) {

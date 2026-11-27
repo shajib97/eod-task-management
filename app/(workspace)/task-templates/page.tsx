@@ -160,7 +160,7 @@ async function TemplatesContent({
 
                             <button
                                 type="submit"
-                                className="rounded-lg bg-[#ffcf00] px-4 py-2 text-sm font-semibold hover:bg-amber-400"
+                                className="rounded-lg bg-[#ffcf00] text-brand-ink px-4 py-2 text-sm font-semibold hover:bg-amber-400"
                             >
                                 Apply
                             </button>
@@ -260,7 +260,7 @@ async function TemplatesContent({
                                                             ariaLabel={`${buttonLabel}: ${template.name}, ${template.shift_name} shift`}
                                                             className={`btn-sm rounded-lg shadow-none ${isActive
                                                                     ? "border-slate-300 bg-white text-slate-700 hover:bg-slate-100"
-                                                                    : "border-amber-400 bg-[#ffcf00] text-slate-900 hover:bg-amber-400"
+                                                                    : "border-amber-400 bg-[#ffcf00] text-brand-ink hover:bg-amber-400"
                                                                 }`}
                                                         />
                                                     </form>
@@ -321,7 +321,7 @@ async function TemplatesContent({
                             <SubmitButton
                                 label="Add template"
                                 pendingLabel="Saving…"
-                                className="w-full rounded-lg border-amber-400 bg-[#ffcf00] text-slate-900 hover:bg-amber-400"
+                                className="w-full rounded-lg border-amber-400 bg-[#ffcf00] text-brand-ink hover:bg-amber-400"
                             />
                         </form>
                     </section>

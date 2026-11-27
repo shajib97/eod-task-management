@@ -49,3 +49,13 @@ Deploy the Express project as its own Node.js service with `npm ci --omit=dev` a
 Set `BETTER_AUTH_URL` on Express to the browser-visible **frontend** origin. Next.js forwards the existing `/api/auth/*` requests to Express so browser sessions stay on the frontend origin. Keep MySQL and SMTP credentials on the backend service. The existing MySQL tables and data are reused.
 
 Repoint any already configured scheduled jobs to the backend commands in the [backend README](../eod-task-management-backend/README.md).
+
+### Trusted client IP for production authentication
+
+Set the same server-only `AUTH_PROXY_SECRET` of at least 32 bytes in Next.js and Express. Set `AUTH_CLIENT_IP_HEADER` in Next.js to the name of a header supplied by your trusted reverse proxy. The proxy must overwrite this header with exactly one validated client IP on every request, and Next.js must be reachable only through that proxy. For example, for an Nginx ingress that connects directly to clients, configure `proxy_set_header X-EOD-Ingress-IP $remote_addr;` and set `AUTH_CLIENT_IP_HEADER=x-eod-ingress-ip`. For a proxy behind another load balancer, configure the ingress to resolve the client IP using that trusted load balancer's settings.
+
+Apply the backend rate-limit migration before deploying this change. Keep the Express listener private and configure SMTP for verification and password reset emails. The frontend sends frame protection, CSP, and production HSTS headers. The CSP allows the inline scripts and styles required by the current Next.js rendering setup.
+
+## Checks
+
+Run `npm run lint`, then `npm run build` and `npm test`. The frontend smoke test uses a stub API to check the home page, signed-in redirect, response headers, and auth request forwarding.
