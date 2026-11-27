@@ -21,7 +21,7 @@ async function ProtectedWorkspace({
             <WorkspaceNav role={access.role} />
 
             <div className="min-w-0 lg:pl-64">
-                <header className="workspace-header border-b border-amber-300 bg-[#ffcf00]">
+                <header className="workspace-header border-b border-amber-300 bg-brand">
                     <div className="mx-auto flex max-w-screen-2xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
                         <div>
                             <p className="text-sm font-semibold">

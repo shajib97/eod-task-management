@@ -7,7 +7,8 @@
 }
 
 @theme inline {
-  --color-brand-ink: #0f172a;
+  --color-brand: var(--workspace-accent, #ffcf00);
+  --color-brand-ink: var(--workspace-accent-ink, #0f172a);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -26,63 +27,126 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-/* Workspace colors are scoped below the header and navigation. */
+
+/* Workspace theme tokens keep the public pages on the original palette. */
 .workspace-shell[data-theme="dark"] {
-  background-color: #111a2a;
-  color: #e2e8f0;
+  --workspace-background: #181816;
+  --workspace-surface: #22221f;
+  --workspace-raised: #2b2a26;
+  --workspace-hover: #33302a;
+  --workspace-border: #45423a;
+  --workspace-control-border: #827b6c;
+  --workspace-text: #eae8e1;
+  --workspace-muted: #b4aea2;
+  --workspace-accent: #d8bd7b;
+  --workspace-accent-hover: #e7cc8d;
+  --workspace-accent-ink: #231e14;
+  --workspace-accent-surface: #383020;
+  --color-amber-400: var(--workspace-accent-hover);
+  --color-amber-500: var(--workspace-accent);
+  --color-red-800: #f0c4c3;
+  --color-base-100: var(--workspace-surface);
+  --color-base-200: var(--workspace-raised);
+  --color-base-300: var(--workspace-hover);
+  --color-base-content: var(--workspace-text);
+  --color-neutral: #49453d;
+  --color-neutral-content: var(--workspace-text);
+  --color-warning: var(--workspace-accent);
+  --color-warning-content: var(--workspace-accent-ink);
+  --color-success: #9dc7a8;
+  --color-success-content: #1a2920;
+  --color-info: #a8c3d2;
+  --color-info-content: #1a262b;
+  background-color: var(--workspace-background);
+  color: var(--workspace-text);
 }
 
 .workspace-shell[data-theme="dark"] .workspace-header {
-  --color-slate-700: #b6c4d6;
-  background-color: #1a2638;
-  border-color: #3a4a60;
+  --color-slate-700: var(--workspace-muted);
+  background-color: var(--workspace-surface);
+  border-color: var(--workspace-border);
 }
 
-.workspace-theme-toggle {
-  background-color: #fff;
-  color: #0f172a;
+.workspace-shell[data-theme="dark"] .workspace-nav {
+  --color-slate-900: #201f1b;
+  --color-slate-800: var(--workspace-hover);
+  --color-slate-600: var(--workspace-control-border);
+  --color-slate-500: var(--workspace-muted);
+  --color-slate-400: var(--workspace-muted);
+  --color-slate-300: #d6d1c6;
+  --color-white: var(--workspace-text);
+  border-color: var(--workspace-border);
+}
+
+.workspace-shell[data-theme="dark"] .workspace-nav a[aria-current="page"] {
+  background-color: var(--workspace-accent-surface);
+  color: var(--workspace-accent-hover);
+  box-shadow: inset 3px 0 var(--workspace-accent);
+}
+
+.workspace-header :is(.workspace-theme-toggle, .workspace-sign-out) {
+  background-color: var(--workspace-raised, #fff);
+  color: var(--workspace-text, #0f172a);
+  border-color: var(--workspace-control-border, transparent);
 }
 
 .workspace-shell[data-theme="dark"] .workspace-theme-toggle {
-  background-color: #26364b;
-  color: #f1f5f9;
+  color: var(--workspace-accent-hover);
 }
 
-.workspace-theme-toggle:focus-within {
+@media (hover: hover) {
+  .workspace-header :is(.workspace-theme-toggle, .workspace-sign-out):enabled:hover {
+    background-color: var(--workspace-hover, #f1f5f9);
+  }
+}
+
+.workspace-header :is(.workspace-theme-toggle, .workspace-sign-out):focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
 
 .workspace-shell[data-theme="dark"] .workspace-main {
-  --color-white: #1c293b;
-  --color-slate-50: #253449;
-  --color-slate-100: #2c3c52;
-  --color-slate-200: #3b4b61;
-  --color-slate-300: #65778e;
-  --color-slate-400: #8396ad;
-  --color-slate-500: #a6b5c9;
-  --color-slate-600: #bac8d9;
-  --color-slate-700: #cbd5e1;
-  --color-slate-800: #e2e8f0;
-  --color-slate-900: #f1f5f9;
-  --color-slate-950: #f8fafc;
-  --color-amber-50: #382a14;
-  --color-amber-100: #4f3818;
-  --color-amber-200: #806131;
-  --color-amber-700: #ffcc76;
-  --color-amber-800: #ffdb98;
-  --color-amber-900: #ffe8b7;
-  --color-blue-50: #1b3652;
-  --color-blue-700: #9ccdff;
-  --color-emerald-50: #153b33;
-  --color-emerald-100: #1b4a3e;
-  --color-emerald-700: #93e8bf;
-  --color-emerald-800: #b0f1d4;
-  --color-orange-700: #ffc18a;
-  --color-red-50: #48272f;
-  --color-red-100: #5b2d37;
-  --color-red-200: #88525e;
-  --color-red-600: #ffa8b0;
-  --color-red-700: #ffb8bf;
-  --color-red-800: #ffccd1;
+  --color-white: var(--workspace-surface);
+  --color-slate-50: var(--workspace-raised);
+  --color-slate-100: var(--workspace-hover);
+  --color-slate-200: var(--workspace-border);
+  --color-slate-300: var(--workspace-control-border);
+  --color-slate-400: #969083;
+  --color-slate-500: var(--workspace-muted);
+  --color-slate-600: #c5beb1;
+  --color-slate-700: #d6d1c6;
+  --color-slate-800: var(--workspace-text);
+  --color-slate-900: var(--workspace-text);
+  --color-slate-950: #f0eee7;
+  --color-amber-50: #352b1d;
+  --color-amber-100: var(--workspace-accent-surface);
+  --color-amber-200: #786444;
+  --color-amber-700: #dfc684;
+  --color-amber-800: #e7cc98;
+  --color-amber-900: #f0dab0;
+  --color-blue-50: #233238;
+  --color-blue-400: #96b5c5;
+  --color-blue-700: #b8d1df;
+  --color-emerald-50: #23342b;
+  --color-emerald-100: #2b4135;
+  --color-emerald-400: #9dc7a8;
+  --color-emerald-500: #9dc7a8;
+  --color-emerald-700: #b4d6b7;
+  --color-emerald-800: #c3dfc6;
+  --color-orange-400: #ccaa89;
+  --color-orange-700: #e6c5a7;
+  --color-red-50: #3b2a2a;
+  --color-red-100: #493131;
+  --color-red-200: #a77b7c;
+  --color-red-600: #e4aaab;
+  --color-red-700: #eab6b6;
+}
+
+.workspace-shell[data-theme="dark"] .workspace-main ::placeholder {
+  color: var(--workspace-muted);
+  opacity: 1;
+}
+
+.workspace-shell[data-theme="dark"] .workspace-main .checkbox {
+  border-color: var(--workspace-control-border);
 }

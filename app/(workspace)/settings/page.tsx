@@ -114,7 +114,7 @@ async function SettingsContent({
 
                         <Link
                             href="/users"
-                            className="mt-6 inline-flex rounded-lg bg-[#ffcf00] text-brand-ink px-4 py-2 text-sm font-semibold hover:bg-amber-400"
+                            className="mt-6 inline-flex rounded-lg bg-brand text-brand-ink px-4 py-2 text-sm font-semibold hover:bg-amber-400"
                         >
                             Manage user access
                         </Link>
@@ -157,7 +157,7 @@ async function SettingsContent({
 
                         <Link
                             href="/task-templates"
-                            className="mt-6 inline-flex rounded-lg bg-[#ffcf00] text-brand-ink px-4 py-2 text-sm font-semibold hover:bg-amber-400"
+                            className="mt-6 inline-flex rounded-lg bg-brand text-brand-ink px-4 py-2 text-sm font-semibold hover:bg-amber-400"
                         >
                             Manage task templates
                         </Link>
@@ -280,7 +280,7 @@ async function SettingsContent({
                             <SubmitButton
                                 label="Save report settings"
                                 pendingLabel="Saving…"
-                                className="rounded-lg border-amber-400 bg-[#ffcf00] text-brand-ink hover:bg-amber-400"
+                                className="rounded-lg border-amber-400 bg-brand text-brand-ink hover:bg-amber-400"
                             />
                         </form>
                     </section>

@@ -22,7 +22,7 @@ export default function SubmitButton({
             type="submit"
             disabled={pending}
             aria-label={pending ? pendingLabel : ariaLabel}
-            className={`btn bg-[#ffcf00] text-brand-ink disabled:opacity-60 ${className}`}
+            className={`btn bg-brand text-brand-ink disabled:opacity-60 ${className}`}
         >
             {pending ? pendingLabel : label}
         </button>

@@ -35,9 +35,27 @@ export default function SignOutButton() {
                 type="button"
                 onClick={handleSignOut}
                 disabled={pending}
-                className="btn btn-sm bg-white text-slate-900 disabled:opacity-60"
+                aria-label={pending ? "Signing out…" : "Sign out"}
+                aria-busy={pending}
+                title="Sign out"
+                className="workspace-sign-out btn btn-square size-10 min-h-10 disabled:opacity-60"
             >
-                {pending ? "Signing out…" : "Sign out"}
+                {pending ? (
+                    <span aria-hidden="true" className="loading loading-spinner loading-xs" />
+                ) : (
+                    <svg
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={1.8}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="size-5"
+                    >
+                        <path d="M14 7l5 5-5 5m5-5H9m3-8H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7" />
+                    </svg>
+                )}
             </button>
 
             {errorMessage && (

@@ -55,9 +55,12 @@ test("home sign-in, workspace theme, response headers and trusted auth forwardin
         assert.equal(workspace.status, 200);
         const page = await workspace.text();
         assert.ok(page.includes(`data-theme="${expected}"`), `Expected ${expected} workspace theme.`);
-        const themeSwitch = page.match(/<input\b[^>]*role="switch"[^>]*>/)?.[0];
+        const themeSwitch = page.match(/<button\b[^>]*role="switch"[^>]*>/)?.[0];
         assert.ok(themeSwitch, "Expected the workspace theme switch.");
-        assert.equal(/\bchecked=""/.test(themeSwitch), expected === "dark");
+        assert.ok(themeSwitch.includes('aria-label="Dark mode"'));
+        assert.ok(themeSwitch.includes(`aria-checked="${expected === "dark"}"`));
+        assert.ok(themeSwitch.includes(`title="Switch to ${expected === "dark" ? "light" : "dark"} mode"`));
+        assert.match(page, /<button\b[^>]*aria-label="Sign out"[^>]*>\s*<svg\b/);
     }
 
     const signedOut = await fetch(base, { headers: { cookie: "eod-workspace-theme=dark" } });

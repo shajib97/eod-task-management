@@ -81,19 +81,19 @@ export default function WorkspaceNav({
         <>
             <a
                 href="#workspace-content"
-                className="sr-only z-50 rounded-lg bg-[#ffcf00] px-4 py-3 font-semibold text-slate-900 focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+                className="sr-only z-50 rounded-lg bg-brand px-4 py-3 font-semibold text-brand-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
             >
                 Skip to content
             </a>
 
-            <aside className="border-b border-slate-800 bg-slate-900 text-white lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex lg:w-64 lg:flex-col lg:overflow-y-auto lg:border-b-0 lg:border-r">
+            <aside className="workspace-nav border-b border-slate-800 bg-slate-900 text-white lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex lg:w-64 lg:flex-col lg:overflow-y-auto lg:border-b-0 lg:border-r">
                 <div className="flex items-center justify-between gap-3 px-4 py-4 lg:border-b lg:border-slate-800 lg:px-6 lg:py-6">
                     <Link
                         href="/dashboard"
                         onClick={() => setMobileOpen(false)}
                         className="flex min-w-0 items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
                     >
-                        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#ffcf00] text-sm font-extrabold text-slate-900">
+                        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand text-sm font-extrabold text-brand-ink">
                             EOD
                         </span>
 
@@ -151,7 +151,7 @@ export default function WorkspaceNav({
                                             isActive ? "page" : undefined
                                         }
                                         className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${isActive
-                                                ? "bg-[#ffcf00] text-slate-950 shadow-sm"
+                                                ? "bg-brand text-slate-950 shadow-sm"
                                                 : "text-slate-300 hover:bg-slate-800 hover:text-white"
                                             }`}
                                     >

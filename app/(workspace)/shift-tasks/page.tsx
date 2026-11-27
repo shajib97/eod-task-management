@@ -33,7 +33,7 @@ async function ShiftChecklist({ searchParams }: Pick<PageProps<"/shift-tasks">, 
     return (
         <div className="space-y-5">
             <section className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-                <div className="h-1 bg-[#ffcf00]" />
+                <div className="h-1 bg-brand" />
 
                 <div className="p-4 sm:p-5">
                     <div className="flex flex-wrap items-center justify-between gap-4">
@@ -51,7 +51,7 @@ async function ShiftChecklist({ searchParams }: Pick<PageProps<"/shift-tasks">, 
                             <SubmitButton
                                 label="Generate checklist"
                                 pendingLabel="Generating…"
-                                className="rounded-lg border-amber-400 bg-[#ffcf00] text-brand-ink hover:bg-amber-400"
+                                className="rounded-lg border-amber-400 bg-brand text-brand-ink hover:bg-amber-400"
                             />
                         </form>
                     </div>
@@ -134,7 +134,7 @@ async function ShiftChecklist({ searchParams }: Pick<PageProps<"/shift-tasks">, 
                             <SubmitButton
                                 label="Add task"
                                 pendingLabel="Saving…"
-                                className="rounded-lg border-amber-400 bg-[#ffcf00] text-brand-ink hover:bg-amber-400"
+                                className="rounded-lg border-amber-400 bg-brand text-brand-ink hover:bg-amber-400"
                             />
                         </form>
                     </details>

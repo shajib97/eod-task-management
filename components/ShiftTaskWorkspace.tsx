@@ -376,7 +376,7 @@ export default function ShiftTaskWorkspace({
                                             ? "Reopen"
                                             : "Complete"
                                         }: ${selectedTask.name}`}
-                                    className="w-full rounded-lg border-amber-400 bg-[#ffcf00] text-brand-ink hover:bg-amber-400"
+                                    className="w-full rounded-lg border-amber-400 bg-brand text-brand-ink hover:bg-amber-400"
                                 />
                             </form>
                         </div>
